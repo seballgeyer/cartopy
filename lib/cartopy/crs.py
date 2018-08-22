@@ -1516,6 +1516,17 @@ class Mollweide(_WarpedRectangularProjection):
         return 1e5
 
 
+class Wintri(_WarpedRectangularProjection):
+    def __init__(self, central_longitude=0, globe=None):
+        proj4_params = [('proj', 'wintri'), ('lon_0', central_longitude)]
+        super(Wintri, self).__init__(proj4_params, central_longitude,
+                                        globe=globe)
+
+    @property
+    def threshold(self):
+        return 1e5
+
+
 class Robinson(_WarpedRectangularProjection):
     def __init__(self, central_longitude=0, globe=None):
         # Warn when using Robinson with proj4 4.8 due to discontinuity at
